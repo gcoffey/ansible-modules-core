@@ -66,7 +66,7 @@ options:
   state:
     description:
      - Indicate desired state of the vm.
-    default: present
+   / default: present
     choices: ['present', 'powered_on', 'absent', 'powered_off', 'restarted', 'reconfigured']
   vm_disk:
     description:
@@ -949,6 +949,7 @@ def gather_facts(vm):
             'label': entry.deviceInfo.label,
             'macaddress': entry.macAddress,
             'macaddress_dash': entry.macAddress.replace(':', '-'),
+            'primary_ip': vm.get_property('ip_address'),
             'summary': entry.deviceInfo.summary,
         }
 

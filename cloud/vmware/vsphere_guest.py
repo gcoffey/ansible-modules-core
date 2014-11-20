@@ -926,6 +926,7 @@ def gather_facts(vm):
     """
     Gather facts for VM directly from vsphere.
     """
+    guest_facts = []
     vm.get_properties()
     facts = {
         'module_hw': True,
@@ -954,8 +955,8 @@ def gather_facts(vm):
         }
 
         ifidx += 1
-
-    return facts
+    guest_facts.append(facts)
+    return guest_facts
 
 
 class DefaultVMConfig(object):
